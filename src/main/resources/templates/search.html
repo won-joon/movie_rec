@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>MovieREC</title>
+    <link rel="short icon" href="/img/movierec.ico"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/css/main.css" rel="stylesheet"/>
+    <link href="/css/template.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="nav-header">
+    <div class="nav-brand">
+        <img src="/img/movierec.ico">
+    </div>
+    <i class="fa fa-bars fa-3x"></i>
+    <div class="header-links">
+        <ul>
+            <li data-menuanchor="secondPage">
+                <form action="/">
+                    <button type="submit">MovieRec</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="fullpage">
+    <div class="section aboutme" data-anchor="aboutme">
+        <div class="opaque-bg animated fadeInDown">
+            <h1 style="color:white">MovieRec</h1>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="search">
+    <form action="/search" class="search-container" method="GET">
+        <input type="text" name="moviename" id="search-bar" placeholder="영화를 검색해주세요">
+        <button class="search-icon">
+            <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" alt="">
+        </button>
+    </form>
+</div>
+
+<br><br>
+
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>영화명</th>
+        <th>개봉날짜</th>
+        <th>장르</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movie : ${movieList}">
+        <td><a th:text="${movie.movieCd}" th:href="@{/movie/detail/{movieNm} (movieNm=${movie.movieNm})}"></a></td>
+        <td th:text="${movie.movieNm}"></td>
+        <td th:text="${movie.openDt}"></td>
+        <td th:text="${movie.genreAlt}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

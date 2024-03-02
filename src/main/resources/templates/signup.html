@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원가입 페이지</title>
+    <link href="/css/signup.css" rel="stylesheet" />
+    <link rel="short icon" href="/img/movierec.ico"/>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .fieldError {
+        border-color: #bd2130;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="wrapper">
+        <h2 class="title">회원가입</h2>
+        <form class="form" action="/users/signup" th:object="${userForm}" method="post">
+            <div class="form-group">
+                <input class="form-control" th:field="*{username}"  type="text" placeholder="아이디">
+<!--                       th:class="${#fields.hasErrors('username')}? 'form-control fieldError' : 'form-control'">-->
+<!--                <p th:if="${#fields.hasErrors('username')}"-->
+<!--                   th:errors="*{username}">Incorrect</p>-->
+            </div>
+            <div class="form-group">
+                <input class="form-control" th:field="*{password}" type="password" placeholder="비밀번호">
+<!--                       th:class="${#fields.hasErrors('username')}? 'form-control fieldError' : 'form-control'">-->
+<!--                <p th:if="${#fields.hasErrors('password')}"-->
+<!--                   th:errors="*{password}">Incorrect</p>-->
+            </div>
+            <button type="submit" class="btn btn-lg" id="btn-lg">가입하기</button>
+            <button type="button" class="btn btn-lg"
+                    onclick="location.href='main.html'"
+                    th:onclick="|location.href='@{/}'|"
+                    >취소</button>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+</body>
+</html>

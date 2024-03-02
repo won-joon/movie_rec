@@ -1,0 +1,529 @@
+
+*{font-family: 'Jua', sans-serif;}
+html,
+body{
+    height: 100%;
+    width:100%;
+    overflow-x:hidden;
+}
+h2{
+    text-align: center;
+    width: 500px;
+    margin: 0 auto;
+}
+/*로그인 팝업 관련 css*/
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    /* 숨기기 */
+    z-index: -1;
+    opacity: 0;
+}
+
+.show {
+    /*show function 관련 css*/
+    opacity: 1;
+    z-index: 1000;
+    transition: all .5s;
+}
+
+.window {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.popup {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+
+    /* 임시 지정 */
+    top: 10%;
+    left: 30%;
+    height: 350px;
+}
+
+/*로그인 화면 관련 css*/
+.overlay, .form:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+}
+.form {
+    position: relative;
+    background: #FFFFFF;
+    width: 600px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.form-group {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 0 20px;
+}
+.form-group label {
+    display: block;
+    margin: 0 0 10px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.2em;
+}
+.form-group input {
+    outline: none;
+    display: block;
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    line-height: inherit;
+    transition: 0.3s ease;
+}
+.form-group input:focus {
+    color: rgba(0, 0, 0, 0.8);
+}
+.form-group button {
+    outline: none;
+    background: #4285F4;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    padding: 12px 20px;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    line-height: inherit;
+    cursor: pointer;
+}
+
+.form-group .form-remember {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+.form-group .form-remember input[type='checkbox'] {
+    display: inline-block;
+    width: auto;
+    margin: 0 10px 0 0;
+}
+.form {
+    padding: 30px calc(5% + 60px) 60px 60px;
+    box-sizing: border-box;
+}
+.form-header {
+    display: flex;
+    margin: 0 0 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+.form-header h1 {
+    display: inline;
+    padding: 4px 0;
+    color: #4285F4;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.form-header #close{
+    display: inline;
+    font-size:20px;
+    color: black;
+    background-color: white;
+    border:0;
+    outline:0;
+}
+
+.textForFooter {
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+    line-height: inherit;
+    margin: 20px 5px 20px;
+    color: rgba(0, 0, 0, 0.6);
+}
+.form-footer{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.form-footer img{
+    width: 10rem;
+    height: 2.5rem;
+    margin: 0 1rem 0.5rem;
+}
+.form-footer .google {
+    width: 15rem;
+    height: 3rem;
+    margin: 0;
+}
+.movies .review_img{
+    width:180px;
+    height:180px;
+}
+
+.movies .review_title:hover{
+    color:green;
+}
+
+
+
+.boxoffice{
+    text-align: center;
+    width: 100px;
+    margin: 0 auto;
+
+}
+.search{
+    text-align: center;
+}
+.search1{
+    position: absolute;
+    left: 150%;
+}
+.movies h4{
+    padding : 40px 20px;
+    font-size: 20px;
+    color:white;
+}
+/*이미지크기 동일화*/
+.movies img {
+    border-radius: 10%;
+    width:230px;
+    height:230px;
+}
+.movies .jb-a {
+    text-align: center;
+    margin: 5px 5px 5px 5px;
+    width: 230px;
+    float:left;
+    position: relative
+}
+
+.movies .jb-c {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
+.movies .jb-a:hover .jb-c {
+    opacity: 1;
+}
+.movies .jb-a:hover .jb-b{
+    filter: brightness(50%);
+}
+
+.post{
+    float:left;
+}
+
+table {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 70%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th {
+  text-align: left;
+}
+
+thead {
+  font-weight: bold;
+  color: #fff;
+  background: #73685d;
+}
+
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
+
+
+@media all and (max-width: 760px) {
+    .movies{
+        padding-right: 1%;
+        padding-left: 1%;
+        margin: 0 auto;
+
+    }
+
+    .movies .slide {
+
+        width: 500px;
+        height: 230px; /**사진보다 크면 다음 사진까지 표시되어 img와 slide크기를 맞춘다.**/
+        overflow: hidden;
+        margin: auto;
+    }
+
+    .movies .images {
+
+        display: flex; /**좌우 슬라이드를 위해 flex로 사진을 가로정렬한다.**/
+        height: 230px; /**slide와 images의 높이가 다르면 부자연스럽게 표시돼 slide의 높이에 맞게 높이를 바꾼다.**/
+        transition: transform 0.5s;
+        /**어떤 속성에 대해 애니메이션 효과를 주는 속성이다.
+        tranform속성에 0.5초의 듀레이션(동작의 시작해서 끝나는 시간)을 준다.**/
+
+    }
+}
+
+
+@media all and (min-width: 1024px) {
+    .movies .slide{
+        margin: 0 auto;
+
+        text-align: center;
+
+        width:960px; height:230px;/**사진보다 크면 다음 사진까지 표시되어 img와 slide크기를 맞춘다.**/
+        overflow: hidden;
+    }
+
+    .movies .images {
+        display: flex; /**좌우 슬라이드를 위해 flex로 사진을 가로정렬한다.**/
+        height:230px; /**slide와 images의 높이가 다르면 부자연스럽게 표시돼 slide의 높이에 맞게 높이를 바꾼다.**/
+        transition: transform 0.5s;
+        /**어떤 속성에 대해 애니메이션 효과를 주는 속성이다.
+        tranform속성에 0.5초의 듀레이션(동작의 시작해서 끝나는 시간)을 준다.**/
+
+    }
+
+    .movies .arrow1{
+        box-sizing: border-box;
+        position:relative;
+        bottom: -120px;
+        left:45%;
+        /*right:-450px;*/
+        width: 30px; height: 30px;
+        border-style: solid;
+        border-color: grey;
+        border-width: 0px 1px 1px 0px;
+        transform: rotate(135deg);
+        transition: border-width 150ms ease-in-out;
+
+
+    }
+    .movies .arrow2{
+        box-sizing: border-box;
+        position:relative;
+        bottom: 20px;
+        left:55%;
+        /*left: 600px;*/
+
+        width: 30px; height: 30px;
+        border-style: solid;
+        border-color: grey;
+        border-width: 0px 1px 1px 0px;
+        transform: rotate(-45deg);
+        transition: border-width 150ms ease-in-out;
+
+    }
+
+}
+@media all and (min-width: 1440px) {
+    .movies .slide{
+        margin: 0 auto;
+        text-align: center;
+        width:960px; height:230px;/**사진보다 크면 다음 사진까지 표시되어 img와 slide크기를 맞춘다.**/
+        overflow: hidden;
+
+    }
+
+    .movies .images {
+        display: flex; /**좌우 슬라이드를 위해 flex로 사진을 가로정렬한다.**/
+        height:230px; /**slide와 images의 높이가 다르면 부자연스럽게 표시돼 slide의 높이에 맞게 높이를 바꾼다.**/
+        transition: transform 0.5s;
+        /**어떤 속성에 대해 애니메이션 효과를 주는 속성이다.
+        tranform속성에 0.5초의 듀레이션(동작의 시작해서 끝나는 시간)을 준다.**/
+
+    }
+    .movies{
+        padding-left: 5%;
+        padding-right: 5%;
+        margin: 0 auto;
+    }
+
+    .movies .arrow1{
+        box-sizing: border-box;
+        position:relative;
+        bottom: -120px;
+        left:10%;
+        width: 30px; height: 30px;
+        border-style: solid;
+        border-color: grey;
+        border-width: 0px 1px 1px 0px;
+        transform: rotate(135deg);
+        transition: border-width 150ms ease-in-out;
+
+
+    }
+    .movies .arrow2{
+        box-sizing: border-box;
+        position:relative;
+        bottom: 150px;
+        left:90%;
+        width: 30px; height: 30px;
+        border-style: solid;
+        border-color: grey;
+        border-width: 0px 1px 1px 0px;
+        transform: rotate(-45deg);
+        transition: border-width 150ms ease-in-out;
+
+    }
+}
+
+
+.movies .arrow1:hover{
+    border-bottom-width: 4px;
+    border-right-width: 4px;
+}
+
+.movies .arrow2:hover{
+    border-bottom-width: 4px;
+    border-right-width: 4px;
+}
+
+
+/**해시태그  **/
+
+.hash_td {
+    text-align: center;
+    margin: 5px 10px 5px 10px;
+    width: 230px;
+    float:left;
+    position: relative
+}
+
+.hash_td:hover .jb-c {
+    opacity: 1;
+
+}
+.movies .hash_td:hover .jb-b{
+    filter: brightness(50%);
+}
+.movies .hash_tr{
+    height:100px;
+}
+.jb-c {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
+/** 검색바 **/
+.search-container {
+    width: 490px;
+    display: block;
+    margin: 0 auto;
+}
+
+input#search-bar {
+    margin: 0 auto;
+    width: 100%;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 1rem;
+    border: 1px solid #D0CFCE;
+    outline: none;
+}
+input#search-bar:focus {
+    border: 1px solid #008ABF;
+    transition: 0.35s ease;
+    color: #008ABF;
+}
+input#search-bar:focus::-webkit-input-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+input#search-bar:focus::-moz-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+input#search-bar:focus:-ms-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+
+.search-icon {
+    position: relative;
+    float: right;
+    width: 75px;
+    height: 75px;
+    top: -30px;
+    right: -30px;
+    cursor: pointer;
+}
+
+/** 해시태그 버튼 **/
+/* Outline Outward */
+.outline-outward {
+    display: inline-block;
+    position: relative;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+    padding: 1em;
+    cursor: pointer;
+    background: #ececec;
+    text-decoration: none;
+    color: #666;
+    margin:5px 5px 5px 5px;
+
+}
+.outline-outward:before {
+    content: "";
+    position: absolute;
+    border: #ececec solid 4px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition-duration: 0.3s;
+    transition-property: top right bottom left;
+}
+.outline-outward:hover:before {
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -8px;
+}
+
+
+
+

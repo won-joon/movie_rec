@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/movierec
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    properties:
+      hibernate:
+        format_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 653017270080-7r8a863b7eakn0og1iq23rdpab1tt8rn.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+            scope:
+              - email
+              - profile
+    jwt:
+      secret-key: eyJhbGciOiJIUzI1NiJ9eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcwNjE0NDQ4NywiaWF0IjoxNzA2MTQ0NDg3fQ.z2XP1GM0loc-CTOQXDykQ9DOx47VQGH0AjJXA7VBSXs
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.orm.jdbc.bind: trace
+
+
+
+search:
+  client:
+    key: 65ebffd667c42aa2290c6e39ecebd1aa
+  naver:
+    client:
+      id: Kj9StD0ySNV5LZ6p2iRj
+      secret : _xbMvamc5l
+
+tmdb:
+  key: f502a3a2c9d0831e0af68f6dcc656b29

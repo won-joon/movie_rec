@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>MovieREC</title>
+    <link rel="short icon" href="/img/movierec.ico"/>
+    <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/movie.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/css/template.css?ver=1" rel="stylesheet" />
+
+</head>
+<body>
+<div class="nav-header">
+    <div class="nav-brand">
+        <img src="/img/movierec.ico">
+    </div>
+    <i class="fa fa-bars fa-3x"></i>
+    <div class="header-links">
+        <ul>
+            <li data-menuanchor="fourthPage" sec:authorize="isAnonymous()" ><button type="submit" onclick="location.href='./users/signup'">회원가입</button></li>
+            <li data-menuanchor="thirdPage" sec:authorize="isAnonymous()"><button id="show">로그인</button></li>
+            <li sec:authorize="isAuthenticated()" ><button id="logoutBt" type="submit" onclick="location.href='./logout'">로그아웃</button></li>
+        </ul>
+    </div>
+</div>
+<!-- end navbar header -->
+
+
+<div id="fullpage">
+
+    <div class="section aboutme" data-anchor="aboutme">
+        <div class="opaque-bg animated fadeInDown">
+            <h1 style="color:white">MovieRec</h1>
+            <p id="holder">Movie review service</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="background">
+    <div class="window">
+        <div class="popup">
+            <div class="form">
+                <div class="form-header"><h1>로그인</h1>
+                    <button id="close">X</button>
+                </div>
+                <div class="form-content">
+<!--                    <form id="form">-->
+                    <form action="login" method="post">
+                        <div class="form-group">
+                            <label for="username">아이디</label>
+                            <input type="text" name="username" placeholder="아이디" id="username" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">비밀번호</label>
+                            <input type="password" name="password" placeholder="비밀번호" id="password" required="required">
+                        </div>
+                        <div class="form-group">
+                            <button id="loginBt" type="submit">로그인</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="textForFooter">SNS 계정으로 간편 로그인</div>
+                <div class="form-footer">
+                    <a href="/oauth2/authorization/google" class="btn"><img class="google" src="img/googleLogin.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="search">
+    <form action="/search" class="search-container" method="GET">
+        <input type="text" name="moviename" id="search-bar" placeholder="영화를 검색해주세요">
+        <button class="search-icon">
+            <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" alt="">
+        </button>
+    </form>
+</div>
+<br>
+
+<div class="movies">
+    <h2 class="boxoffice">BOXOFFICE</h2>
+    <div class="arrow1"></div>
+    <div class="slide">
+        <div class="images">
+            <div class="jb-a" th:each="boxMovie : ${boxMovies}">
+                <form th:action="@{/movie/detail/{movieNm} (movieNm=${boxMovie.title})}">
+                    <button type="submit" style="background-color:transparent; border:0; outline:0;" >
+                        <img class="jb-b" th:name="image" th:src = "${boxMovie.poster_path}"/>
+                        <h4 class="jb-c" th:text = "${boxMovie.title}"/>
+                    </button>
+                </form>
+            </div>
+        </div>>
+    </div>
+
+    <div class="arrow2"></div>
+</div>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+    let pages = 0;//현재 인덱스 번호
+    let positionValue = 0;//images 위치값
+    const IMAGE_WIDTH = 242;//한번 이동 시 IMAGE_WIDTH만큼 이동한다.
+    //DOM
+    const backBtn = document.querySelector(".arrow1")
+    const nextBtn = document.querySelector(".arrow2")
+    const images = document.querySelector(".images")
+
+    function next() {
+        if (pages< 4) {
+            backBtn.removeAttribute('disabled')//뒤로 이동해 더이상 disabled가 아니여서 속성을 삭제한다.
+            positionValue -= IMAGE_WIDTH;//IMAGE_WIDTH의 증감을 positionValue에 저장한다.
+            images.style.transform = `translateX(${positionValue}px)`;
+            //x축으로 positionValue만큼의 px을 이동한다.
+            pages += 1; //다음 페이지로 이동해서 pages를 1증가 시킨다.
+        }
+        if (pages === 4) { //
+        }
+    }
+
+    function back() {
+        if (pages > 0) {
+            nextBtn.removeAttribute('disabled')
+            positionValue += IMAGE_WIDTH;
+            images.style.transform = `translateX(${positionValue}px)`;
+            pages -= 1; //이전 페이지로 이동해서 pages를 1감소 시킨다.
+        }
+        if (pages === 0) {
+        }
+    }
+
+    function init() {  //초기 화면 상태
+        backBtn.addEventListener("click", back); //클릭시 다음으로 이동한다.
+        nextBtn.addEventListener("click", next);//클릭시 이전으로 이동한다.
+    }
+    init();
+</script>
+
+</body>
+</html>
