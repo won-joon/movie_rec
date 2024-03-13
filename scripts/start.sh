@@ -11,6 +11,7 @@ DEPLOY_LOG="$REPOSITORY/deploy.log"
 IDLE_PORT=$(find_idle_port)
 
 echo "$TIME_NOW > Build 파일 복사" >> $DEPLOY_LOG
+echo "$TIME_NOW > cp $REPOSITORY/*.jar $REPOSITORY/"
 
 cp $REPOSITORY/build/libs/*.jar $JAR_FILE      # 새로운 jar file 계속 덮어쓰기
 
