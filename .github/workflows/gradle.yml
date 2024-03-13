@@ -32,8 +32,8 @@ jobs:
       # (1) 기본 체크아웃
       - name: Checkout
         uses: actions/checkout@v3
-      - run: touch ./src/main/resources/application.properties
-      - run: echo "${{ secrets.APPLICATION }}" > ./src/main/resources/application.properties
+      - run: touch ./src/main/resources/application.yml
+      - run: echo "${{ secrets.APPLICATION }}" > ./src/main/resources/application.yml
 
       # (2) JDK 21 세팅
       - name: Set up JDK 21
