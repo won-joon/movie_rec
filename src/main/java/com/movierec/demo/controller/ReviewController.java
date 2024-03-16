@@ -37,7 +37,7 @@ public class ReviewController {
         postService.delete(id);
         model.addAttribute("posts", postService.findByMvtitle(movieNm));
 
-        return "/moviedetail :: #review-card";
+        return "moviedetail :: #review-card";
     }
 
 
