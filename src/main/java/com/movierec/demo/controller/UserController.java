@@ -8,11 +8,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/users/signup")
-    public String create(@Valid UserDto form, BindingResult result) {
+    public String create(@ModelAttribute("userForm") @Valid UserDto form, BindingResult result) {
         if (result.hasErrors()) {
             return "signup";
         }
