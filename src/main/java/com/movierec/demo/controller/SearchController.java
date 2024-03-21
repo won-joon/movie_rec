@@ -23,21 +23,11 @@ import java.util.Map;
 public class SearchController {
 
     private final SearchService searchService;
-
-    @Value("${search.client.key}")
-    private String clientKey;
-
     @GetMapping("/search")
     public String searchMovie(@RequestParam("moviename") String moviename, Model model) {
-        String text = null;
-        text = URLEncoder.encode(moviename, StandardCharsets.UTF_8);
-
-        String apiUrl = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=" + clientKey + "&movieNm=" + text;
-        List<MovieDto> movieList = searchService.getMovieListData(apiUrl);
+        List<MovieDto> movieList = searchService.getMovieListData(moviename);
         model.addAttribute("movieList", movieList);
 
         return "search";
     }
-
-
 }

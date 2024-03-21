@@ -40,11 +40,7 @@ public class MovieController {
      */
     @GetMapping("/movie/detail/{movieNm}")
     public String movieDetails(@PathVariable("movieNm") String movieNm, Model model){
-        String text = null;
-        text = URLEncoder.encode(movieNm, StandardCharsets.UTF_8);
-
-        String apiUrl = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=" + clientKey + "&movieNm=" + text;
-        MovieDto movieData = searchService.getMovieData(apiUrl);
+        MovieDto movieData = searchService.getMovieData(movieNm);
         model.addAttribute("movieData", movieData);
 
         String naverApiUrl = "https://openapi.naver.com/v1/datalab/search";
